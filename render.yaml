@@ -19,7 +19,7 @@ services:
         value: "true"
       - key: N8N_BASIC_AUTH_USER
         value: admin
-      - key: N8N_BASIC_AUTH_PASSWOR
+      - key: N8N_BASIC_AUTH_PASSWORD
         value: behbeh123
       - key: N8N_HOST
         fromService:
@@ -31,26 +31,23 @@ services:
       - key: N8N_PORT
         value: "5678"
       - key: DB_POSTGRESDB_HOST
-        fromService:
-          type: postgres
+        fromDatabase:
           name: n8n-postgres
           property: host
       - key: DB_POSTGRESDB_PORT
-        fromService:
-          type: postgres
+        fromDatabase:
           name: n8n-postgres
           property: port
       - key: DB_POSTGRESDB_USER
-        fromService:
-          type: postgres
+        fromDatabase:
           name: n8n-postgres
           property: user
       - key: DB_POSTGRESDB_PASSWORD
-        fromService:
-          type: postgres
+        fromDatabase:
           name: n8n-postgres
           property: password
-  - type: postgres
-    name: n8n-postgres
-    plan: free
+
+databases:
+  - name: n8n-postgres
     databaseName: n8n
+    plan: free
